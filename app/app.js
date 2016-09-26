@@ -5,17 +5,20 @@ require('angular');
 require('./theme/css/bootstrap.min.css');
 require('./theme/css/heroic-features.css');
 
-// Import components
+// Import modules
 require('./components/navbar/navbar.module.js');
-require('./components/navbar/navbar.component.js');
+require('./components/search-block/search-block.module.js');
+require('./core/core.module.js');
 
 // Declare app level module which depends on views, and components
 angular.module('OMDbHero', [
-  'navbar'
+  'navbar',
+  'searchBlock',
+  'core'
 ])
 
 .config([() => {
-  //asd
+
 }]);
 
 angular.bootstrap(document, ['OMDbHero']);
