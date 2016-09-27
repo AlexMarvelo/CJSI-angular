@@ -5,9 +5,24 @@ angular.
 
     controller: ['$scope', '$log', 'CONFIG',
       function MoviesBlockCtrl($scope, $log, CONFIG) {
+        this.favourites = [];
+        this.moviesOnPage = [];
         this.currentView = {
           totalResults: 1,
           currentPage: 1
+        };
+
+        this.updateMoviesList = function() {
+          if (!this.currentView.Search) {
+            this.moviesOnPage = this.favourites;
+          } else {
+            this.moviesOnPage = this.favourites.concat(
+              this.currentView.Search.filter((movie) => {
+                return this.favourites.indexOfByProp(movie, 'imdbID') === -1;
+              })
+            );
+          }
+          this.setPagination();
         };
 
         this.setPagination = function() {
@@ -34,6 +49,28 @@ angular.
           let targetPage = parseInt(event.target.dataset.id);
           if (!targetPage) return;
           $scope.$$childHead.$ctrl.onSearchSubmit(new Event('submit'), targetPage);
+        };
+
+        this.onFavouritesAddClick = function(event) {
+          event.preventDefault();
+          if (!event.target.classList.contains('btn-favourite') &&
+              !event.target.classList.contains('btn-favourite-text') &&
+              !event.target.classList.contains('glyphicon-star')) return;
+          let card = findAncestor(event.target, 'thumbnail');
+          if (!card || !card.dataset.id) return;
+          if (!card.classList.contains('thumbnail-favourite')) {
+            card.classList.add('thumbnail-favourite');
+            let movieIndex = this.currentView.Search.indexOfByProp({imdbID: card.dataset.id}, 'imdbID');
+            let selectedMovie = this.currentView.Search[movieIndex];
+            selectedMovie.isFavourite = true;
+            this.favourites.push(selectedMovie);
+          } else {
+            card.classList.remove('thumbnail-favourite');
+            let movieIndex = this.favourites.indexOfByProp({imdbID: card.dataset.id}, 'imdbID');
+            if (card.dataset.id && movieIndex !== -1) {
+              this.favourites.splice(movieIndex, 1);
+            }
+          }
         };
       }
     ]

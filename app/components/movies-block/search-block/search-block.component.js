@@ -17,10 +17,17 @@ angular.
             type: this.qtype,
             page: targetPage
           }, () => {
-            this.currentview.currentPage = targetPage;
-            $scope.$parent.$ctrl.setPagination();
-            // $log.log(this.currentview);
-            // $log.log(`Current page: ${targetPage}`);
+            if (this.currentview.Response === 'True') {
+              this.currentview.currentPage = targetPage;
+            } else {
+              targetPage = 1;
+              this.currentview = {
+                Search: [],
+                totalResults: 1,
+                currentPage: 1
+              };
+            }
+            $scope.$parent.$ctrl.updateMoviesList();
           });
         }.bind(this);
       }

@@ -5,6 +5,10 @@ require('angular');
 require('./theme/css/bootstrap.min.css');
 require('./theme/css/heroic-features.css');
 
+// Import utils
+require('./utils/findAncestor');
+require('./utils/indexOfByProp');
+
 // Import modules
 require('./core/core.module');
 require('./components/navbar/navbar.module');
