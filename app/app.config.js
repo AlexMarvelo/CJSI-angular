@@ -11,15 +11,22 @@ angular
         $locationProvider.html5Mode(true);
         $routeProvider.
           when('/', {
-            template: '<movies-block></movies-block>'
+            template: '<movies-block favourites="MainCtrl.favourites"></movies-block>'
           }).
           when('/movie/:movieID', {
-            template: '<movie-details></movie-details>'
+            template: '<movie-details favourites="MainCtrl.favourites"></movie-details>'
           }).
           otherwise('/');
 
         localStorageServiceProvider
           .setPrefix('omdbhero');
+      }])
+
+    .controller('OMDbHero.Controller', [
+      '$scope', '$log', 'localStorageService', function($scope, $log, localStorageService) {
+        this.favourites = localStorageService.get('favourites');
+        if (!this.favourites) this.favourites = [];
+        // $log.log('Main fav', this.favourites);
       }])
 
     .constant('CONFIG', {

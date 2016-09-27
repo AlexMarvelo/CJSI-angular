@@ -3,7 +3,7 @@
     <div class="col-sm-4 text-center">
       <img ng-src="{{$ctrl.movie.Poster !== 'N/A' ? $ctrl.movie.Poster : 'http://placehold.it/280x390'}}" alt="{{$ctrl.movie.Title}}">
       <div class="btn-container">
-        <button class="btn btn-default btn-favourite" ng-click="$ctrl.toggleFavourite($event)" type="button">
+        <button class="btn btn-default btn-favourite {{$ctrl.movie.isFavourite ? 'active' : ''}}" ng-click="$ctrl.toggleFavourite($event)" type="button">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
           <span class="btn-favourite-text btn-favourite-text-add">Add to favourites</span>
           <span class="btn-favourite-text btn-favourite-text-remove">Remove from favourites</span>

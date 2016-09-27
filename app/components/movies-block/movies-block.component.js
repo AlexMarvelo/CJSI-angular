@@ -5,8 +5,8 @@ angular.
 
     controller: ['$scope', '$log', 'localStorageService', 'CONFIG',
       function MoviesBlockCtrl($scope, $log, localStorageService, CONFIG) {
-        this.favourites = localStorageService.get('favourites');
-        if (!this.favourites) this.favourites = [];
+        // $log.log('Movies-block fav: ', this.favourites);
+
         this.moviesOnPage = [];
         this.currentView = {
           totalResults: 1,
@@ -24,6 +24,7 @@ angular.
             );
           }
           this.setPagination();
+          // $log.log('Favourites:', this.favourites);
         };
 
         this.setPagination = function() {
@@ -73,8 +74,13 @@ angular.
             }
           }
           localStorageService.set('favourites', this.favourites);
+          // $log.log('Favourites:', this.favourites);
           // $log.log('Local storage:', localStorageService.get('favourites'));
         };
       }
     ],
+
+    bindings: {
+      favourites: '='
+    }
   });

@@ -5,10 +5,13 @@ angular.
   component('movieDetails', {
     templateUrl: '/app/components/movie-details/movie-details.template.html',
 
-    controller: ['$scope', '$log', '$routeParams', 'Movies', 'CONFIG',
-      function MovieDetailsCtrl($scope, $log, $routeParams, Movies, CONFIG) {
+    controller: ['$scope', '$log', '$routeParams', 'localStorageService', 'Movies', 'CONFIG',
+      function MovieDetailsCtrl($scope, $log, $routeParams, localStorageService, Movies, CONFIG) {
+        // $log.log('Movie-details fav', this.favourites);
+
         this.movie = Movies.get({i: $routeParams.movieID}, (movie) => {
           // $log.log(this.movie);
+          this.movie.isFavourite = this.favourites.indexOfByProp({imdbID: $routeParams.movieID}, 'imdbID') !== -1;
           this.tableDetails = {};
           let skippingKeys = ['Title', 'Rated', 'Director', 'Plot', 'Poster', 'Response', 'imdbID'];
           for (let key in this.movie) {
@@ -25,12 +28,26 @@ angular.
         this.toggleFavourite = function(event) {
           event.preventDefault();
           let btn = findAncestor(event.target, 'btn-favourite');
-          if (btn.classList.contains('active')) {
+          if (this.movie.isFavourite) {
             btn.classList.remove('active');
+            this.movie.isFavourite = false;
+            let movieIndex = this.favourites.indexOfByProp({imdbID: $routeParams.movieID}, 'imdbID');
+            if (movieIndex !== -1) {
+              this.favourites.splice(movieIndex, 1);
+            }
           } else {
             btn.classList.add('active');
+            this.movie.isFavourite = true;
+            this.favourites.push(this.movie);
           }
+          localStorageService.set('favourites', this.favourites);
+          // $log.log('Favourites:', this.favourites);
+          // $log.log('Local storage:', localStorageService.get('favourites'));
         };
       }
-    ]
+    ],
+
+    bindings: {
+      favourites: '='
+    }
   });
