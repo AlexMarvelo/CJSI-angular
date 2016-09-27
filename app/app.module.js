@@ -1,5 +1,5 @@
 'use strict';
-require('angular');
+require('../node_modules/angular/angular.min');
 
 // Import styles
 require('./theme/css/bootstrap.min.css');
@@ -17,6 +17,7 @@ require('./components/movies-block/movies-block.module');
 // Declare app level module which depends on views, and components
 angular.module('OMDbHero', [
   require('angular-route'),
+  require('angular-local-storage'),
   'core',
   'navbar',
   'moviesBlock'

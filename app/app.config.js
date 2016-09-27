@@ -5,8 +5,10 @@ angular
     .config([
       '$locationProvider',
       '$routeProvider',
-      ($locationProvider, $routeProvider) => {
+      'localStorageServiceProvider',
+      ($locationProvider, $routeProvider, localStorageServiceProvider) => {
         $locationProvider.hashPrefix('');
+        $locationProvider.html5Mode(true);
         $routeProvider.
           when('/', {
             template: '<movies-block></movies-block>'
@@ -15,7 +17,9 @@ angular
             template: '<movies-block></movies-block>'
           }).
           otherwise('/');
-        $locationProvider.html5Mode(true);
+
+        localStorageServiceProvider
+          .setPrefix('omdbhero');
       }])
 
     .constant('CONFIG', {
