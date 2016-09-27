@@ -53,10 +53,10 @@ angular.
         };
 
         this.onFavouritesAddClick = function(event) {
-          event.preventDefault();
           if (!event.target.classList.contains('btn-favourite') &&
               !event.target.classList.contains('btn-favourite-text') &&
               !event.target.classList.contains('glyphicon-star')) return;
+          event.preventDefault();
           let card = findAncestor(event.target, 'thumbnail');
           if (!card || !card.dataset.id) return;
           if (!card.classList.contains('thumbnail-favourite')) {
@@ -76,5 +76,5 @@ angular.
           // $log.log('Local storage:', localStorageService.get('favourites'));
         };
       }
-    ]
+    ],
   });

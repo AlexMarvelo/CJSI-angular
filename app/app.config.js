@@ -13,8 +13,8 @@ angular
           when('/', {
             template: '<movies-block></movies-block>'
           }).
-          when('/movies/:page', {
-            template: '<movies-block></movies-block>'
+          when('/movie/:movieID', {
+            template: '<movie-details></movie-details>'
           }).
           otherwise('/');
 

@@ -7,7 +7,7 @@ angular.
     controller: ['$scope', 'CONFIG',
       function NavbarCtrl($scope, CONFIG) {
         this.homeButton = {
-          link: '#',
+          link: '/',
           title: CONFIG.appName,
         };
       }

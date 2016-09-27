@@ -1,4 +1,5 @@
 'use strict';
+
 require('../node_modules/angular/angular.min');
 
 // Import styles
@@ -13,6 +14,7 @@ require('./utils/indexOfByProp');
 require('./core/core.module');
 require('./components/navbar/navbar.module');
 require('./components/movies-block/movies-block.module');
+require('./components/movie-details/movie-details.module');
 
 // Declare app level module which depends on views, and components
 angular.module('OMDbHero', [
@@ -20,7 +22,8 @@ angular.module('OMDbHero', [
   require('angular-local-storage'),
   'core',
   'navbar',
-  'moviesBlock'
+  'moviesBlock',
+  'movieDetails'
 ]);
 
 require('./app.config');
