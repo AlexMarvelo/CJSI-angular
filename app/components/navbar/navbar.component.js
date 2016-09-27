@@ -4,11 +4,12 @@ angular.
   module('navbar').
   component('navbar', {
     templateUrl: 'app/components/navbar/navbar.template.html',
-    controller: ['$scope',
-      function NavbarCtrl($scope) {
-        this.homeLink = '#';
-        this.homeLinkTitle = 'OMDb Hero';
-        // console.log($scope);
+    controller: ['$scope', 'CONFIG',
+      function NavbarCtrl($scope, CONFIG) {
+        this.homeButton = {
+          link: '#',
+          title: CONFIG.appName,
+        };
       }
     ]
   });

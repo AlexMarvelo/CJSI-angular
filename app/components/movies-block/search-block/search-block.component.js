@@ -5,8 +5,10 @@ angular.
   component('searchBlock', {
     templateUrl: '/app/components/movies-block/search-block/search-block.template.html',
 
-    controller: ['$scope', '$log', 'Movies',
-      function SearchBlockCtrl($scope, $log, Movies) {
+    controller: ['$scope', '$log', 'CONFIG', 'Movies',
+      function SearchBlockCtrl($scope, $log, CONFIG, Movies) {
+        this.blockTitle = `Welcome to ${CONFIG.appName}`;
+
         this.onSearchSubmit = function(event, targetPage = 1) {
           event.preventDefault();
           this.currentview = Movies.get({

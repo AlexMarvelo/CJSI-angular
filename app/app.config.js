@@ -14,11 +14,12 @@ angular
           when('/movies/:page', {
             template: '<movies-block></movies-block>'
           }).
-          otherwise('/');  
+          otherwise('/');
         $locationProvider.html5Mode(true);
       }])
 
     .constant('CONFIG', {
       'moviesPerPage': 10,
-      'omdbAPI': '6f0a67d0'
+      'omdbAPI': '6f0a67d0',
+      'appName': 'OMDb Hero'
     });
