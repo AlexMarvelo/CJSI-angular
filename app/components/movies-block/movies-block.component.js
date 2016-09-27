@@ -3,9 +3,10 @@ angular.
   component('moviesBlock', {
     templateUrl: '/app/components/movies-block/movies-block.template.html',
 
-    controller: ['$scope', '$log', 'CONFIG',
-      function MoviesBlockCtrl($scope, $log, CONFIG) {
-        this.favourites = [];
+    controller: ['$scope', '$log', 'localStorageService', 'CONFIG',
+      function MoviesBlockCtrl($scope, $log, localStorageService, CONFIG) {
+        this.favourites = localStorageService.get('favourites');
+        if (!this.favourites) this.favourites = [];
         this.moviesOnPage = [];
         this.currentView = {
           totalResults: 1,
@@ -71,6 +72,8 @@ angular.
               this.favourites.splice(movieIndex, 1);
             }
           }
+          localStorageService.set('favourites', this.favourites);
+          // $log.log('Local storage:', localStorageService.get('favourites'));
         };
       }
     ]
