@@ -5,7 +5,7 @@ Hometask for Ciklum JS Internship Lesson 5-6
 
 ##### List of used technologies:
 - Angular Framework
-
+- webpack
 ---
 
 ##### To run the project locally, use:
@@ -15,4 +15,4 @@ cd CJSI-angular
 npm i
 npm run start
 ```
-Then open *http://localhost:8000/* in your browser
+Then open *http://localhost:8080/* in your browser
