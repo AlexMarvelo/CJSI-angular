@@ -1,11 +1,10 @@
-<search-block movies="$ctrl.movies"></search-block>
+<search-block currentview="$ctrl.currentView"></search-block>
 
 <div class="container">
-  <div class="row text-center" id="movies-container-favourite"></div>
+  <div class="row text-center"></div>
 
-  <div class="row text-center" id="movies-container">
-    <!-- ng-repeat="movie in $ctrl.movies | filter:$ctrl.query | orderBy:$ctrl.orderProp" -->
-    <div ng-repeat="movie in $ctrl.movies.Search" class="movie-card col-sm-6 col-md-4 col-lg-3">
+  <div class="row text-center">
+    <div ng-repeat="movie in $ctrl.currentView.Search" class="movie-card col-sm-6 col-md-4 col-lg-3">
       <div class="thumbnail" data-id="{{movie.imdbID}}">
         <img ng-src="{{movie.Poster !== 'N/A' ? movie.Poster : 'http://placehold.it/280x390'}}" alt="{{movie.Title}}">
         <div class="caption">
@@ -20,9 +19,14 @@
         </div>
       </div>
     </div>
-
   </div>
 
-  <nav class="text-center" id="pagination-container" aria-label="Page navigation"></nav>
+  <nav class="text-center" aria-label="Page navigation">
+    <ul class="pagination" ng-click="$ctrl.onPaginationClick($event)">
+      <li ng-repeat="page in $ctrl.pagination" class="{{page.active ? 'active' : ''}}">
+        <a href="{{page.link}}" data-id="{{page.number}}">{{page.name}}</a>
+      </li>
+    </ul>
+  </nav>
 
 </div>

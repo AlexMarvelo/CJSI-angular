@@ -2,13 +2,13 @@
 
 angular.
   module('core.movies').
-  factory('Movies', ['$resource',
-    ($resource) => {
+  factory('Movies', ['$resource', 'CONFIG',
+    ($resource, CONFIG) => {
       return $resource('http://www.omdbapi.com', {}, {
         query: {
           method: 'GET',
           params: {
-            apikey: '6f0a67d0',
+            apikey: CONFIG.omdbAPI,
             s: 'iron man'
           }
         }

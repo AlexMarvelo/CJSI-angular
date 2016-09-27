@@ -7,20 +7,24 @@ angular.
 
     controller: ['$scope', '$log', 'Movies',
       function SearchBlockCtrl($scope, $log, Movies) {
-        this.onSearchSubmit = function(event) {
+        this.onSearchSubmit = function(event, targetPage = 1) {
           event.preventDefault();
-          this.movies = Movies.get({
+          this.currentview = Movies.get({
             s: this.qstring,
             y: this.qyear,
-            type: this.qtype
+            type: this.qtype,
+            page: targetPage
           }, () => {
-            // $log.log(this.movies);
+            this.currentview.currentPage = targetPage;
+            $scope.$parent.$ctrl.setPagination();
+            // $log.log(this.currentview);
+            // $log.log(`Current page: ${targetPage}`);
           });
         }.bind(this);
       }
     ],
 
     bindings: {
-      movies: '='
+      currentview: '='
     }
   });

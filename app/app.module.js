@@ -6,19 +6,18 @@ require('./theme/css/bootstrap.min.css');
 require('./theme/css/heroic-features.css');
 
 // Import modules
-require('./components/navbar/navbar.module.js');
-require('./components/movies-block/movies-block.module.js');
-require('./core/core.module.js');
+require('./core/core.module');
+require('./components/navbar/navbar.module');
+require('./components/movies-block/movies-block.module');
 
 // Declare app level module which depends on views, and components
 angular.module('OMDbHero', [
+  require('angular-route'),
+  'core',
   'navbar',
-  'moviesBlock',
-  'core'
-])
+  'moviesBlock'
+]);
 
-.config([() => {
-
-}]);
+require('./app.config');
 
 angular.bootstrap(document, ['OMDbHero']);

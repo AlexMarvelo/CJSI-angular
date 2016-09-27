@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var webpackConfig = {
-    entry: __dirname + '/app/app.js',
+    entry: __dirname + '/app/app.module.js',
     output: {
         path: __dirname + '/build/',
         filename: "[name].bundle.js"
