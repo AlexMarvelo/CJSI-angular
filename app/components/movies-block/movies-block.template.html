@@ -1,0 +1,28 @@
+<search-block movies="$ctrl.movies"></search-block>
+
+<div class="container">
+  <div class="row text-center" id="movies-container-favourite"></div>
+
+  <div class="row text-center" id="movies-container">
+    <!-- ng-repeat="movie in $ctrl.movies | filter:$ctrl.query | orderBy:$ctrl.orderProp" -->
+    <div ng-repeat="movie in $ctrl.movies.Search" class="movie-card col-sm-6 col-md-4 col-lg-3">
+      <div class="thumbnail" data-id="{{movie.imdbID}}">
+        <img ng-src="{{movie.Poster !== 'N/A' ? movie.Poster : 'http://placehold.it/280x390'}}" alt="{{movie.Title}}">
+        <div class="caption">
+          <h3>{{movie.Title}}</h3>
+          <span class="badge">{{movie.Year}}</span>
+          <span class="badge">{{movie.Type}}</span>
+          <button class="btn btn-default btn-favourite" type="button">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="btn-favourite-text btn-favourite-text-add">Add to favourites</span>
+            <span class="btn-favourite-text btn-favourite-text-remove">Remove from favourites</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="text-center" id="pagination-container" aria-label="Page navigation"></nav>
+
+</div>
