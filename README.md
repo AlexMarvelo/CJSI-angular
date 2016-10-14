@@ -7,6 +7,7 @@ This aplication fetch data about movies using [open OMDB API](https://www.omdbap
 ##### List of used technologies:
 - Angular Framework
 - webpack
+
 ---
 
 ##### To run the project locally, use:
